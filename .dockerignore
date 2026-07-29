@@ -1,0 +1,16 @@
+.git
+.gitignore
+.DS_Store
+README.md
+db/
+node_modules/
+frontend/node_modules/
+backend/vendor/
+backend/node_modules/
+frontend/dist/
+backend/bootstrap/cache/*.php
+backend/storage/logs/
+backend/storage/framework/cache/
+backend/storage/framework/sessions/
+backend/storage/framework/views/
+*.log

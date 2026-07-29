@@ -16,7 +16,7 @@
 
 
 -- Dumping database structure for dms
-CREATE DATABASE IF NOT EXISTS `dms` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE IF NOT EXISTS `dms` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `dms`;
 
 -- Dumping structure for table dms.cache
@@ -69,11 +69,15 @@ CREATE TABLE IF NOT EXISTS `inventory` (
   PRIMARY KEY (`id`),
   KEY `inventory_product_id_foreign` (`product_id`),
   CONSTRAINT `inventory_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table dms.inventory: ~1 rows (approximately)
+-- Dumping data for table dms.inventory: ~6 rows (approximately)
 INSERT INTO `inventory` (`id`, `product_id`, `quantity`, `purchase_price`, `transaction_type`, `notes`, `created_at`, `updated_at`) VALUES
-	(1, 3, 100, 10.50, 'purchase', 'Initial stock verification', '2026-02-09 04:01:36', '2026-02-09 04:01:36');
+	(2, 4, 100, 10.50, 'purchase', 'Initial stock verification', '2026-07-07 02:20:54', '2026-07-07 02:20:54'),
+	(3, 9, 50, 100.00, 'adjustment', 'sdfasdf', '2026-07-08 08:03:56', '2026-07-08 08:03:56'),
+	(4, 9, 100, 200.00, 'sale', NULL, '2026-07-08 14:48:58', '2026-07-08 14:48:58'),
+	(6, 9, 50, 100.00, 'sale', NULL, '2026-07-08 14:54:29', '2026-07-08 14:54:29'),
+	(7, 4, 91, 150.00, 'sale', NULL, '2026-07-09 04:45:50', '2026-07-09 04:45:50');
 
 -- Dumping structure for table dms.jobs
 CREATE TABLE IF NOT EXISTS `jobs` (
@@ -115,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table dms.migrations: ~5 rows (approximately)
+-- Dumping data for table dms.migrations: ~0 rows (approximately)
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(1, '0001_01_01_000000_create_users_table', 1),
 	(2, '0001_01_01_000001_create_cache_table', 1),
@@ -149,13 +153,13 @@ CREATE TABLE IF NOT EXISTS `products` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `products_sku_unique` (`sku`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table dms.products: ~3 rows (approximately)
 INSERT INTO `products` (`id`, `name`, `description`, `category`, `price`, `stock`, `image`, `sku`, `type`, `is_active`, `created_at`, `updated_at`) VALUES
-	(1, 'MySQL Test Product', NULL, 'Test', 10.50, 50, NULL, 'MYSQL-001', 'fresh_groceries', 1, '2026-02-09 03:59:36', '2026-02-09 03:59:36'),
-	(2, 'MySQL Verified Product', 'Automatically created to verify MySQL connection', 'Test', 19.99, 100, NULL, 'TEST-MYSQL-1770631207', 'fresh_groceries', 1, '2026-02-09 04:00:07', '2026-02-09 04:00:07'),
-	(3, 'MySQL Verified Product', 'Automatically created to verify MySQL connection', 'Test', 19.99, 100, NULL, 'TEST-MYSQL-1770631296', 'fresh_groceries', 1, '2026-02-09 04:01:36', '2026-02-09 04:01:36');
+	(4, 'MySQL Verified Product', 'Automatically created to verify MySQL connection', 'Test', 19.99, 9, NULL, 'TEST-MYSQL-1783412454', 'fresh_groceries', 1, '2026-07-07 02:20:54', '2026-07-09 04:45:50'),
+	(8, 'Organic Tomato', NULL, 'vegetables', 120.00, 100, 'products/1783519357_cover.jpg', 'veg-123', 'fresh_groceries', 1, '2026-07-08 08:02:37', '2026-07-08 15:00:22'),
+	(9, 'Organic Tomato', NULL, 'vegetables', 120.00, 0, NULL, 'veg-12345', 'fresh_groceries', 0, '2026-07-08 08:03:14', '2026-07-09 05:20:07');
 
 -- Dumping structure for table dms.sessions
 CREATE TABLE IF NOT EXISTS `sessions` (
@@ -170,9 +174,9 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   KEY `sessions_last_activity_index` (`last_activity`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table dms.sessions: ~1 rows (approximately)
+-- Dumping data for table dms.sessions: ~0 rows (approximately)
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-	('5M0IZ5g7tIHligK4kZLgRzsqldhFLILr0d1nvpaI', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoibGlaVVFTN0dhNUpEZG1SVkVHR1ZGaDVtVUVpRENCeUN2TzlkOUJ6byI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1770632485);
+	('UT7a1dW56rSVEp9kCcjizSzSFIT8J4kPC3UyHmPm', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiYVFqajV1aGVERXRtYjNoY1pPa3k0MHMzV2xWcDJCNWtIWUNQT2VCYiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDA6Imh0dHA6Ly9kaXN0cmlidXRpb25tYW5hZ2VtZW50c3lzdGVtLnRlc3QiO3M6NToicm91dGUiO047fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1783405427);
 
 -- Dumping structure for table dms.users
 CREATE TABLE IF NOT EXISTS `users` (
