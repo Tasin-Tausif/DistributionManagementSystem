@@ -1,7 +1,7 @@
 services:
   backend:
     build:
-      context: ./backend
+      context: tasintausif/distributionmanagementsystem-backend
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
@@ -15,7 +15,7 @@ services:
 
   frontend:
     build:
-      context: ./frontend
+      context: .tasintausif/distributionmanagementsystem-frontend
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
