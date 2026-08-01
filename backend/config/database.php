@@ -63,7 +63,7 @@ return [
                 (PHP_VERSION_ID >= 80500 ? Mysql::ATTR_SSL_CA : PDO::MYSQL_ATTR_SSL_CA)
                 => env('MYSQL_ATTR_SSL_CA')
                     ? env('MYSQL_ATTR_SSL_CA')
-                    : storage_path('certs/isrgrootx1.pem'),
+                    : storage_path('cert/isrgrootx1.pem'),
             ]) : [],
         ],
 
