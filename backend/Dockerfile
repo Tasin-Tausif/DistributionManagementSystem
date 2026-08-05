@@ -23,6 +23,12 @@ RUN composer install --no-interaction --prefer-dist --optimize-autoloader || tru
 # Copy the application code
 COPY . .
 
+# Ensure storage/cache directories are writable
+RUN chmod -R 775 storage bootstrap/cache
+
+# Create the public/storage symlink so uploaded/stored files are servable via URL
+RUN php artisan storage:link
+
 EXPOSE 8000
 
 # Minimal start command for development

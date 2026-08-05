@@ -33,3 +33,6 @@ README.md
 # Docker
 Dockerfile.old
 docker-compose*.yml
+
+# Local storage symlink (recreated at build time via artisan storage:link)
+public/storage

@@ -1,12 +1,12 @@
 services:
   backend:
     build:
-      context: tasintausif/distributionmanagementsystem-backend
+      context: backend
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
     env_file:
-      - .env
+      - ./backend/.env
     volumes:
       - ./backend:/var/www/html
       - backend_vendor:/var/www/html/vendor
@@ -15,7 +15,7 @@ services:
 
   frontend:
     build:
-      context: .tasintausif/distributionmanagementsystem-frontend
+      context: frontend
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
@@ -28,7 +28,7 @@ services:
   db:
     image: mysql:8.0
     env_file:
-      - .env
+      - ./backend/.env
     volumes:
       - db_data:/var/lib/mysql
 
